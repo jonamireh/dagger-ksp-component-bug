@@ -44,11 +44,11 @@ class InjectorGeneratorProvider : SymbolProcessorProvider {
 
         private val KSClassDeclaration.injectorFileSpec: FileSpec
             get() {
-                val fileSpecBuilder = FileSpec.builder(packageName.asString(), "${simpleName}Injector$")
+                val fileSpecBuilder = FileSpec.builder(packageName.asString(), "${simpleName.asString()}Injector$")
 
                 val typeSpec = TypeSpec.interfaceBuilder(requireNotNull(qualifiedName).getShortName() + "Injector")
                     .addAnnotation(
-                        AnnotationSpec.builder(Generated::class).addMember("\"${this.javaClass.simpleName}\"").build(),
+                        AnnotationSpec.builder(Generated::class).build(),
                     )
                     .addFunction(
                         FunSpec
